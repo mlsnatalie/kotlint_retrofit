@@ -1,4 +1,4 @@
-package com.jindashi.jsdsdkdemo
+package com.jindashi.jsdsdkdemo.http
 
 /**
  *   @auther : Aleyn

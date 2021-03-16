@@ -17,10 +17,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
 //        setContentView(R.layout.activity_main)
-        viewBinding.edit.addTextChangedListener {
-
-        }
+        viewBinding.hello.setOnClickListener { viewModel.getNews() }
 
         viewModel.newsLiveData.observe(this, Observer {
             when(it.requestStatus) {

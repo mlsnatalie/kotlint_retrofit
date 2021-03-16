@@ -1,4 +1,4 @@
-package com.jindashi.jsdsdkdemo
+package com.jindashi.jsdsdkdemo.http
 
 import retrofit2.http.GET
 
@@ -14,5 +14,5 @@ interface NewsApi {
      * 返回值，直接就是你的数据类型，不需要再包装其他的东西了，超级简介
      */
     @GET("/getWangYiNews")
-    suspend fun getNews(): BaseResult<NewsBean>
+    suspend fun getNews(): BaseResult<List<Result>>
 }

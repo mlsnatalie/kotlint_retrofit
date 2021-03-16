@@ -2,6 +2,10 @@ package com.jindashi.jsdsdkdemo
 
 import androidx.lifecycle.*
 import com.jindashi.http.*
+import com.jindashi.jsdsdkdemo.http.BaseResult
+import com.jindashi.jsdsdkdemo.http.DataDemo
+import com.jindashi.jsdsdkdemo.http.NewsApi
+import com.jindashi.jsdsdkdemo.http.Result
 
 /**
  * @author 李沐阳
@@ -12,14 +16,14 @@ class MainViewModel : ViewModel() {
 
     private val newsApi = getRetrofit().create(NewsApi::class.java)
 
-    private val _newsLiveData = MediatorLiveData<ResultData<BaseResult<NewsBean>>>()
+    private val _newsLiveData = MediatorLiveData<ResultData<BaseResult<List<Result>>>>()
 
     // 对外暴露的只是抽象的LiveData，防止外部随意更改数据
-    val newsLiveData: LiveData<ResultData<BaseResult<NewsBean>>>
+    val newsLiveData: LiveData<ResultData<BaseResult<List<Result>>>>
         get() = _newsLiveData
 
     fun getNews() {
-        val liveData = viewModelScope.simpleRequestLiveData<BaseResult<NewsBean>> {
+        val liveData = viewModelScope.simpleRequestLiveData<BaseResult<List<Result>>> {
             api { newsApi.getNews() }
 
             /**

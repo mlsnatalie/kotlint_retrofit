@@ -18,6 +18,6 @@ fun getRetrofit(): Retrofit {
     return Retrofit.Builder()
         .baseUrl("https://api.apiopen.top")
         .addConverterFactory(GsonConverterFactory.create())
-        .client(builder.build())
+        .client(ApiRetrofit.getInstance().okHttpClient)
         .build()
 }
