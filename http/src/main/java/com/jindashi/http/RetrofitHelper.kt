@@ -10,13 +10,17 @@ import retrofit2.converter.gson.GsonConverterFactory
  * @date：2020/4/22
  * @description:
  */
-fun getRetrofit(): Retrofit {
+
+fun getRetrofit(baseUrl: String?): Retrofit {
     // 正常的构建 Retrofit ，没有区别
 
     val builder = OkHttpClient.Builder()
+    var url = "https://api.apiopen.top"
+    if (baseUrl != null) url = baseUrl
+
 
     return Retrofit.Builder()
-        .baseUrl("https://api.apiopen.top")
+        .baseUrl(url)
         .addConverterFactory(GsonConverterFactory.create())
         .client(ApiRetrofit.getInstance().okHttpClient)
         .build()

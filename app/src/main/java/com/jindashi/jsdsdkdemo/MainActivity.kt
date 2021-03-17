@@ -20,11 +20,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(viewBinding.root)
 //        setContentView(R.layout.activity_main)
         viewBinding.hello.setOnClickListener { viewModel.getNews() }
+        viewBinding.lhb.setOnClickListener { viewModel.getLhb() }
 
         viewModel.newsLiveData.observe(this, Observer {
             when(it.requestStatus) {
                 RequestStatus.SUCCESS -> {
-                    Log.e("aaaddd", it.data.toString())
+                    Log.e("aaaddd", it.data!!.result[0].toString())
+                }
+            }
+        })
+
+        viewModel.lhbLiveData.observe(this, Observer {
+            when(it.requestStatus) {
+                RequestStatus.SUCCESS -> {
+                    Log.e("aaaddd", it.data!!.result.create_time)
                 }
             }
         })
