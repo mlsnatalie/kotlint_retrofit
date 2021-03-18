@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(viewBinding.root)
 //        setContentView(R.layout.activity_main)
         viewBinding.hello.setOnClickListener { viewModel.getNews() }
-        viewBinding.lhb.setOnClickListener { viewModel.getLhb() }
+        viewBinding.lhb.setOnClickListener { viewModel.getAllData() }
 
         viewModel.newsLiveData.observe(this, Observer {
             when(it.requestStatus) {
