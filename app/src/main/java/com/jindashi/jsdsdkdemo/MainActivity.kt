@@ -19,13 +19,21 @@ class MainActivity : AppCompatActivity() {
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 //        setContentView(R.layout.activity_main)
-        viewBinding.hello.setOnClickListener { viewModel.getNews() }
+        viewBinding.hello.setOnClickListener { viewModel.getNewsList() }
         viewBinding.lhb.setOnClickListener { viewModel.getAllData() }
+
+        viewModel.newsLiveDataList.observe(this, Observer {
+            when(it.requestStatus) {
+                RequestStatus.SUCCESS -> {
+                    Log.e("aaaddd", it.toString())
+                }
+            }
+        })
 
         viewModel.newsLiveData.observe(this, Observer {
             when(it.requestStatus) {
                 RequestStatus.SUCCESS -> {
-                    Log.e("aaaddd", it.data!!.result[0].toString())
+                    Log.e("aaaddd", it.toString())
                 }
             }
         })
@@ -34,6 +42,14 @@ class MainActivity : AppCompatActivity() {
             when(it.requestStatus) {
                 RequestStatus.SUCCESS -> {
                     Log.e("aaaddd", it.data!!.result.create_time)
+                }
+            }
+        })
+
+        viewModel.allData.observe(this, Observer {
+            when(it.requestStatus) {
+                RequestStatus.SUCCESS -> {
+                    Log.e("aaaddd", it.toString())
                 }
             }
         })

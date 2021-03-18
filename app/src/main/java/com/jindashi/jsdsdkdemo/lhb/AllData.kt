@@ -11,7 +11,7 @@ import java.io.Serializable
  * description：
  */
 data class AllData(
-        val data1: LongHuBangAdvisoryBean,
-        val data2: List<DataDemo>
+        val data1: List<DataDemo>,
+        val data2: LongHuBangAdvisoryBean
 
-) : Serializable
+)
